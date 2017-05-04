@@ -5,15 +5,35 @@ services:
     image: tianon/true
     volumes:
       - ${APPLICATION}:/var/www
+  ############
+  # mysql
+  ############
+  mysql:
+    build:
+      context: ./mysql
+    expose:
+      - 33060:3306
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    networks:
+      - backend
+  ############
+  # PHP
+  ############
   php-fpm:
     build:
       context: ./laravel-php7-fpm
     expose:
       - "9000"
+    depends_on:
+      - mysql
     volumes_from:
       - applications
     networks:
       - backend
+  ############
+  # NGINX
+  ############
   nginx:
     build:
       context: ./nginx
