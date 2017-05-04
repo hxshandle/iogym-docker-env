@@ -1,3 +1,5 @@
 storage/mysql/*
 !storage/mysql/.gitkeep
+storage/redis/*
+!storage/redis/.gitkeep
 .DS_Store
