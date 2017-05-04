@@ -1,6 +1,10 @@
 FROM php:7-fpm
 MAINTAINER Mike Chernev <mike@mikechernev.com>
 
+RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list 
+RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list 
+RUN sed -i "s/security.debian.org/mirrors.aliyun.com\/debian-security/g" /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -12,6 +16,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
     
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin
+ENV COMPOSER_ALLOW_SUPERUSER 1
+ADD ./composer-installer /tmp
+RUN php /tmp/composer-installer --filename=composer --install-dir=/usr/local/bin
+# 全局设置composer的中国镜像
+RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 WORKDIR /var/www

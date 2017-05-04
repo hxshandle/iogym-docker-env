@@ -3,3 +3,5 @@ storage/mysql/*
 storage/redis/*
 !storage/redis/.gitkeep
 .DS_Store
+.env
+*.log
