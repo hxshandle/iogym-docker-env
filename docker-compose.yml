@@ -38,9 +38,22 @@ services:
       - "9000"
     depends_on:
       - mysql
+      - redis
     volumes_from:
       - applications
     networks:
+      - backend
+  ############
+  # SOCKET SERVER
+  ############
+  socker-server:
+    image: node:7
+    volumes_from:
+      - applications
+    expose:
+      - 89990:8999
+    networks:
+      - frontend
       - backend
   ############
   # NGINX
