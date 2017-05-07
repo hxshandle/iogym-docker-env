@@ -34,7 +34,6 @@ services:
   php-fpm:
     build:
       context: ./laravel-php7-fpm
-    image: iogym-laravel-php-fpm
     expose:
       - "9000"
     depends_on:
