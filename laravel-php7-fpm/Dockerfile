@@ -1,6 +1,8 @@
 FROM php:7-fpm
 MAINTAINER Mike Chernev <mike@mikechernev.com>
 
+ENV HOST_IP=`/sbin/ip route | awk '/default/ { print $3 }'`
+
 RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list 
 RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list 
 RUN sed -i "s/security.debian.org/mirrors.aliyun.com\/debian-security/g" /etc/apt/sources.list
@@ -14,7 +16,22 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) iconv mcrypt mbstring pdo_mysql \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
-    
+
+
+# for xdebug
+RUN pecl install \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_handler=\"dbgp\"" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_host=\"$HOST_IP\"" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.idekey=\"PHPStorm\"" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.max_nesting_level=200" >> /usr/local/etc/php/conf.d/xdebug.ini \
+
+
+
 # Install Composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ADD ./composer-installer /tmp
