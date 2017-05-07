@@ -47,7 +47,8 @@ services:
   # SOCKET SERVER
   ############
   socker-server:
-    image: node:7
+    build:
+      context: ./node
     volumes_from:
       - applications
     expose:

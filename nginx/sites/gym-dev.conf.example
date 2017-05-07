@@ -4,7 +4,7 @@ server {
     listen [::]:80;
 
     server_name gym.dev;
-    root /var/www/gymio/public;
+    root /var/www/gym/public;
     index index.php index.html index.htm;
 
     location / {
