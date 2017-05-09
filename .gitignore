@@ -3,5 +3,7 @@ storage/mysql/*
 storage/redis/*
 !storage/redis/.gitkeep
 .DS_Store
+applications/gym
+applications/gymio-desktop-vue
 .env
 *.log

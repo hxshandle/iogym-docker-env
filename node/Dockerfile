@@ -6,10 +6,12 @@ RUN sed -i "s/security.debian.org/mirrors.aliyun.com\/debian-security/g" /etc/ap
 
 RUN apt-get update && apt-get install -y git
 
-RUN yarn install -g gulp forever
+RUN yarn add -g gulp forever
 
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
-COPY ./start_docker_server.sh /opt/scripts
+COPY ./start_socket_server.sh /opt/scripts/start_socket_server.sh
 
-CMD ["/opt/scripts/start_docker_server.sh"]
+RUN chmod +x /opt/scripts/start_socket_server.sh
+
+CMD ["/opt/scripts/start_socket_server.sh"]

@@ -1,1 +1,0 @@
-forever start -a --uid "gym_websocket_server" /var/www/gym/server.js
