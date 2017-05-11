@@ -1,2 +1,2 @@
-REM start cmd.exe @cmd /k "cd applications && git clone https://git.oschina.net/hxshandle/gymio-desktop-vue.git"
+start cmd.exe @cmd /k "cd applications && git clone https://git.oschina.net/hxshandle/gymio-desktop-vue.git"
 start cmd.exe @cmd /k "cd applications && git clone https://git.oschina.net/hxshandle/gym.git"

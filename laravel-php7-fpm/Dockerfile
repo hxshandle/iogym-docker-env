@@ -38,3 +38,4 @@ RUN php /tmp/composer-installer --filename=composer --install-dir=/usr/local/bin
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 WORKDIR /var/www
+
