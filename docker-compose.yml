@@ -41,6 +41,8 @@ services:
       - redis
     volumes_from:
       - applications
+    volumes:
+      - ./logs/php:/var/logs
     networks:
       - backend
   ############
