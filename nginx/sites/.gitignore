@@ -1,2 +1,4 @@
 *.conf
+!ssl.uat.io-gym.com.conf
 !default.conf
+!gym-device.conf
