@@ -1,13 +1,11 @@
-# echo "初始化"
-
-# cd applications
-
-# git clone https://git.oschina.net/hxshandle/gymio-desktop-vue.git
-
-# git clone https://git.oschina.net/hxshandle/gym.git
-
-# echo "生成配置文件"
-# cp gym/.env.example gym/.env
+echo "初始化"
+cd applications
+git clone https://git.oschina.net/hxshandle/gymio-desktop-vue.git
+git clone https://git.oschina.net/hxshandle/gym.git
+echo "生成配置文件"
+cp gym/.env.example gym/.env
+echo "改变日志存储权限"
+chmod -R 777 gym/storage
 
 read -p 'DB host address:' DB_HOST
 DB_PORT_DEFAULT=3306

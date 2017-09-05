@@ -61,6 +61,21 @@ services:
       - frontend
       - backend
   ############
+  # TOMCAT
+  ############
+  tomcat-server:
+    build:
+      context: ./tomcat
+    volumes_from:
+      - applications
+    volumes:
+      - ./applications/tomcat_webapp:/usr/local/tomcat/webapps
+    expose:
+      - "8888"
+    networks:
+      - frontend
+      - backend
+  ############
   # NGINX
   ############
   nginx:
