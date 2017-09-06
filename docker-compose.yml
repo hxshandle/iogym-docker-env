@@ -63,15 +63,15 @@ services:
   ############
   # TOMCAT
   ############
-  tomcat-server:
+  jetty-server:
     build:
-      context: ./tomcat
+      context: ./jetty
     volumes_from:
       - applications
     volumes:
-      - ./applications/tomcat_webapp:/usr/local/tomcat/webapps
+      - ./applications/jetty_webapps:/var/lib/jetty/webapps
     expose:
-      - "8888"
+      - "8080"
     networks:
       - frontend
       - backend
