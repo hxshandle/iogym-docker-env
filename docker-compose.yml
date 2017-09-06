@@ -61,17 +61,27 @@ services:
       - frontend
       - backend
   ############
-  # TOMCAT
+  # JETTY
   ############
-  jetty-server:
+  booking-system-backend:
     build:
-      context: ./jetty
+      context: ./booking-system-backend
     volumes_from:
       - applications
     volumes:
-      - ./applications/jetty_webapps:/var/lib/jetty/webapps
+      - ./applications/booking-system/jetty_webapps:/var/lib/jetty/webapps
     expose:
       - "8080"
+    networks:
+      - frontend
+      - backend
+  booking-system-ui:
+    build:
+      context: ./booking-system-ui
+    volumes_from:
+      - applications
+    expose:
+      - "3000"
     networks:
       - frontend
       - backend
