@@ -7,3 +7,5 @@ applications/gym
 applications/gymio-desktop-vue
 .env
 *.log
+applications/ssl/
+*.bak
