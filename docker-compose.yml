@@ -57,6 +57,7 @@ services:
       - php-fpm
     volumes_from:
       - applications
+    volumes:
       - ./logs:/logs
     expose:
       - "8999"
