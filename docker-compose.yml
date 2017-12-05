@@ -27,6 +27,8 @@ services:
       - ./storage/redis:/data
     expose:
       - "6379"
+    ports:
+      - "6379:63790"
     networks:
       - backend
   ############
@@ -55,6 +57,7 @@ services:
       - php-fpm
     volumes_from:
       - applications
+      - ./logs:/logs
     expose:
       - "8999"
     networks:
