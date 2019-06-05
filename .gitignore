@@ -5,6 +5,7 @@ storage/redis/*
 .DS_Store
 applications/gym
 applications/gymio-desktop-vue
+applications/*
 .env
 *.log
 applications/ssl/
